@@ -1,7 +1,19 @@
+// Переменные
+
 $color_box: #222222;
 $width_site: 1140px;
 $main_color: #F16D7F;
+$breadcrumbsColor: #636363;
+$colorText:#000;
 
+// Удаление стрелок маркеров
+summary::webkit-details-marker {
+    display: none;
+}
+
+summary {
+    display: block;
+}
 
 * {
     margin: 0;
@@ -25,13 +37,152 @@ img {
     padding-right: calc(50% - $width_site / 2);
 }
 
-// шапка (index, product)
+.filter-sort {
+    height: 132px;
+    padding-top: 39px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    gap: 30px;
+}
+
+.filter {
+    padding-top: 13px;
+    width: 360px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+
+    &__content {
+        background-color: #fff;
+        padding: 0 16px 16px 16px;
+    }
+
+    &[open] {
+        background: #FFFFFF;
+        box-shadow: 6px 4px 35px
+        rgba(0, 0, 0, 0.21);
+    }
+    
+    &[open] .filter__heading{
+        color: $main_color;
+    }
+
+    &[open] path {
+        fill: $main_color;
+    }
+
+    &__summary {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding-left: 16px;
+    }
+
+    &__item {
+        margin-top: 16px;
+    }
+
+    &__heading {
+        color: #6F6E6E;
+        font-family: Lato;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    } 
+    
+    &__link-box {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        padding: 24px 24px 16px 16px;
+    }
+
+    &__link {
+        color: #6F6E6E;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        &:hover {
+            color: $main_color;
+        }
+    }
+
+    &__head {
+        color: #6F6E6E;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding: 8px 11px 11px 11px;
+        border-bottom: 1px solid #EBEBEB;
+        border-left: 5px solid $main_color;
+    }
+
+    &__item[open] .filter__head{
+        color: $main_color;
+    }
+
+
+}
+
+.sort {
+    padding-top: 12px;
+    display: flex;
+    gap: 18px;
+
+    &__details {
+        position: relative;
+    }
+    
+    &__summary {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__check {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        color: #6F6E6E;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    &__heading {
+        color: #6F6E6E;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    &__box {
+        position: absolute;
+        top: 22px;
+        left: -9px;
+        background: #fff;
+        box-shadow: 6px 4px 35px 0px 
+        rgba(0, 0, 0, 0.21);
+        padding: 7px 30px 11px 9px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 10;
+    }
+}
+
+// Шапка (catalog)
+
 .header {
     min-height: 75px;
     max-width: 1600px;
-
     background: $color_box;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -63,14 +214,16 @@ label {
     display: none;
 }
 
-// всплывающие меню (index, product)
+
+// Всплывающие меню (index, product, catalog)
+
 .mobile-menu {
     position: absolute;
     top: 75px;
-    right: 5%;
+    right: 20%;
     z-index: 2;
+    transition: right 1s;
     background: #fff;
-
     padding: 32px 74px 32px 32px;
 
     &__heading {
@@ -83,7 +236,6 @@ label {
     &__title {
         display: block;
         margin: 24px 0 12px 0;
-
         color: #F16D7F;
         font-size: 14px;
         font-family: Lato;
@@ -91,61 +243,19 @@ label {
 
     &__list {
         padding-left: 20px;
-
         list-style: none;
         display: grid;
         gap: 11px;
 
-        color: #6F6E6E;
-        font-size: 14px;
-        font-family: Lato;
+        & a {
+            color: #6F6E6E;
+            font-size: 14px;
+            font-family: Lato;
+        }
     }
 }
 
-
-.promo {
-    max-width: 1600px;
-    max-height: 764px;
-
-    display: flex;
-    background: #F1E4E6;
-    padding-left: calc(50% - 800px);
-    padding-right: calc(50% - 800px);
-
-    &__img {
-        width: 50%;
-    }
-
-    &__content {
-        display: flex;
-        padding-left: 63.42px;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    &__info {
-        border-left: 12px solid #F16D7F;
-        padding-left: 16px;
-    }
-
-    &__title {
-        font-style: normal;
-        font-weight: 900;
-        font-size: 48px;
-        line-height: 58px;
-        color: #222222;
-    }
-
-    &__heading {
-        font-style: normal;
-        font-weight: 700;
-        font-size: 32px;
-        line-height: 38px;
-        color: #222222;
-    }
-}
-
-// вторая шапка (product)
+// вторая шапка (catalog)
 .top-head {
     background-color: #F8F3F4;
     position: relative;
@@ -154,7 +264,6 @@ label {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         height: 148px;
     }
 
@@ -167,225 +276,35 @@ label {
 
     &__breadcrumbs {
         list-style-type: none;
-
         display: flex;
         gap: 10px;
-
-        color: #636363;
         font-size: 14px;
         font-weight: 300;
+        color: $breadcrumbsColor;
+    }
+    
+    &__item:not(:last-child)::after {
+        content: "/";
+        padding: 0 5px;
+        color: $breadcrumbsColor; 
+    }   
+        
+    &__item:last-child {
+        font-weight: bold; 
     }
 
+    &__title {
+        color: $breadcrumbsColor;
+    }
+    
     &__breadcrumbs a:hover {
         color: $main_color;
     }
 
-    &__title {
+
+    &__title1 {
         color: $main_color;
-        font-weight: bold;
     }
-}
-
-
-.sale {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(3, 1fr);
-
-    padding-top: 64px;
-    padding-bottom: 96px;
-
-    &__item {
-        position: relative;
-        cursor: pointer;
-
-        &__big {
-            min-height: 180px;
-            grid-column: 1 / -1;
-        }
-    }
-
-    &__item:hover {
-        transform: scale(1.2) translateY(-50px);
-        z-index: 2;
-        transition: 1s;
-    }
-
-    &__item__big:hover {
-        transform: scale(1.2) translateY(50px);
-        z-index: 2;
-        transition: 1s;
-    }
-
-    &__content {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &__text {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        text-align: center;
-        color: #FFFFFF;
-    }
-
-    &__heading {
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 29px;
-        text-align: center;
-        color: #F16D7F;
-    }
-}
-
-.main-product {
-    background-color: #F7F7F7;
-
-    &__img {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding-top: 11px;
-        padding-bottom: 42px;
-    }
-
-    &__button {
-        width: 47px;
-        height: 47px;
-        border: none;
-        background-color: #c0c0bb;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        cursor: pointer;
-    }
-
-    &__button:hover path {
-        fill: $main_color
-    }
-
-
-    &__center {
-        display: flex;
-        justify-content: center;
-        background: #FFF;
-    }
-
-    &__info {
-        margin-top: -65px;
-        padding: 65px 293px;
-
-        background-color: #FFFFFF;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        & h4 {
-            font-size: 14px;
-            font-weight: 300;
-            line-height: 17px;
-            color: $main_color;
-        }
-
-        & span {
-            width: 63px;
-            border: 2px solid $main_color;
-            margin: 12.1px 0;
-        }
-
-        & h2 {
-            font-size: 18px;
-            font-weight: 300;
-            line-height: 22px;
-            color: #4D4D4D;
-        }
-
-        &__text {
-            text-align: center;
-            font-size: 14px;
-            font-weight: 300;
-            line-height: 17px;
-            color: #5E5E5E;
-
-            margin: 48.41px 0 32.27px;
-        }
-
-        &__price {
-            font-family: Lato;
-            font-size: 24px;
-            font-weight: 300;
-            line-height: 29px;
-            color: $main_color;
-        }
-
-        &__features {
-            margin: 130.09px 0 48.91px;
-            display: flex;
-            gap: 42px;
-        }
-
-        &__features button {
-            font-family: Lato;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 17px;
-            color: #6F6E6E;
-            background-color: white;
-
-            border: none;
-            cursor: pointer;
-        }
-
-        &__button {
-            padding: 14.62px 57px 8.57px 24px;
-            display: flex;
-            align-items: center;
-            gap: 22.91px;
-
-            font-family: Lato;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 19px;
-            color: $main_color;
-            border: 1px solid $main_color;
-        }
-
-        &__button:hover {
-            background-color: $main_color;
-            color: white;
-            transition: .3s;
-        }
-
-        &__button:hover path {
-            fill: white;
-        }
-    }
-
-    &__bottom {
-        background: #FFF;
-    }
-
-    &__bottom__items {
-        padding: 128px 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-
 }
 
 .product-box {
@@ -410,8 +329,6 @@ label {
     }
 
     &__content {
-        margin-top: 48px;
-
         display: grid;
         grid-template-columns: repeat(auto-fit, 360px);
         justify-content: center;
@@ -424,17 +341,14 @@ label {
 
         &__text {
             padding: 14.5px 38.5px 13.5px;
-
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
             line-height: 19px;
             color: #F26376;
-
             background-color: white;
             border: 1px solid #FF6A6A;
-
             cursor: pointer;
         }
 
@@ -444,9 +358,7 @@ label {
             transition: .3s;
         }
     }
-
 }
-
 
 .product {
 
@@ -498,20 +410,18 @@ label {
 
         &__img {
             width: 100%;
-            z-index: -1;
+            height: 100%;
+            z-index: -2;
         }
     }
 
     &__content {
-
         background: #F8F8F8;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 16px;
-
         padding: 24px 16px;
 
         &__heading {
@@ -540,15 +450,53 @@ label {
     }
 }
 
+// Блок перелистывания страниц
+.breadcrumbs {
+    display: flex;
+    justify-content: center;
+    padding-top: 48px;
+
+    &__box {
+        border: 1px solid rgba(235, 235, 235, 1);
+        border-radius: 5px;
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        & svg {
+            cursor: pointer;
+        }
+
+        & svg:hover path {
+            fill: $main_color;
+        }
+    }
+
+    &__items {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__link {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        color: #C4C4C4;
+
+        &:hover {
+            color: $main_color;
+        }
+    }
+}
 
 .advantages {
     background: #222224;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 30px;
-
     margin-top: 95px;
     padding-top: 104px;
     padding-bottom: 104px;
@@ -559,7 +507,6 @@ label {
 
         &__heading {
             margin: 26px 0 16px;
-
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
@@ -580,13 +527,11 @@ label {
     }
 }
 
-
 .subscription {
     min-height: 448px;
     background-size: cover;
     background-position: center;
     background-image: url(../images/fon.svg);
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -599,14 +544,12 @@ label {
 
         &__figure-text {
             margin-top: 30px;
-
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
             font-size: 20px;
             line-height: 24px;
             text-align: center;
-
             color: #222224;
         }
     }
@@ -622,7 +565,6 @@ label {
             line-height: 167.2%;
             text-align: center;
             color: #222224;
-
             margin-bottom: 32px;
         }
 
@@ -638,7 +580,6 @@ label {
                 padding: 0 20px 0 20px;
                 height: 49px;
                 border-radius: 30px 0 0 30px;
-
                 border: none;
                 width: 256px;
                 background: #E1E1E1;
@@ -654,7 +595,6 @@ label {
 
             &__btn {
                 border-radius: 0 30px 30px 0;
-
                 border: none;
                 width: 100px;
                 background: #F16D7F;
@@ -667,20 +607,15 @@ label {
                 text-align: center;
                 color: #FFFFFF;
                 justify-content: center;
-
                 cursor: pointer;
             }
         }
     }
-
 }
-
 
 .footer {
     background: $color_box;
-
     min-height: 79px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -703,7 +638,6 @@ label {
             display: flex;
             justify-content: center;
             align-items: center;
-
             width: 32px;
             height: 32px;
             background-color: white;
